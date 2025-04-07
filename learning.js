@@ -20,11 +20,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
         daysContainer.innerHTML = '';
 
+        //Previous month's dates
+        const prevMonthLastDay = new Date(year, month, 0).getDate();
+        for (let i = firstDay; i > 0; i--) {
+            const dayDiv = document.createElement('div');
+            dayDiv.textContent = prevMonthLastDay - i + 1;
+            dayDiv.classList.add('fade');
+            daysContainer.appendChild(dayDiv);
+
+        }
+
         // Current month's dates 
         for (let i = 1; i <= lastDay; i++) {
             const dayDiv = document.createElement('div');
             dayDiv.textContent = i
             if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                dayDiv.classList.add('today');
+        }
+        daysContainer.appendChild(dayDiv);
+        }
+
+        // Next month's dates 
+        const nexMonthStartDay = 7 - new Date(year, month + 1, 0).getDay() -1;
+        for (let i = 1; i <= nexMonthStartDay; i++) {
+            const dayDiv = document.createElement('div');
+            dayDiv.textContent = i;
+            dayDiv.classList.add('fade');
+            daysContainer.appendChild(dayDiv);
         }
     }
 
