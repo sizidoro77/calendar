@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const monthYear = document.getElementById('month-year');
     const daysContainer = document.getElementById('days');
+    const prevButton = document.getElementById('prev')
+    const nextButton = document.getElementById('next');
 
     const months = [
         'January', 'February', 'March', 'April', 'May', 'June',
@@ -50,5 +52,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    prevButton.addEventListener('click', function () {
+        currentDate.setMonth(currentDate.getMonth() -1);
+        renderCalendar(currentDate);
+    });
+
+    nextButton.addEventListener ('click', function() {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar(currentDate);
+    });
     renderCalendar(currentDate);
 });
